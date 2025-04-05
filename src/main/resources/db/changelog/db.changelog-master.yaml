@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/001-create-contact-messages-table.sql
+  - include:
+      file: db/changelog/changes/002-create-static-info-tables.sql
+  - include:
+      file: db/changelog/changes/003-create-related-tables.sql
+  - include:
+      file: db/changelog/changes/004-seed-static-data.sql
+  - include:
+      file: db/changelog/changes/005-create-users-table.sql
+  - include:
+      file: db/changelog/changes/006-seed-admin-user.sql
+  - include:
+      file: db/changelog/changes/007-seed-test-vacancies.sql
+  - include:
+      file: db/changelog/changes/008-add-vacancy-status-metadata.sql
