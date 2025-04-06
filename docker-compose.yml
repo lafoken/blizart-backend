@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: blizart_db
+    environment:
+      POSTGRES_DB: blizartdb
+      POSTGRES_USER: blizartuser
+      POSTGRES_PASSWORD: blizartpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - blizart-network
+
+  app:
+    build: .
+    container_name: blizart_app
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/blizartdb
+      SPRING_DATASOURCE_USERNAME: blizartuser
+      SPRING_DATASOURCE_PASSWORD: blizartpass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db
+    networks:
+      - blizart-network
+
+volumes:
+  pgdata:
+
+networks:
+  blizart-network:
+    driver: bridge
